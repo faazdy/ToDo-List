@@ -47,7 +47,8 @@ main{
             padding: 1em;
             border: none;
             background-color: transparent;
-            border: 1px solid;
+            border: 1px solid black;
+            border-radius: 0;
         }
         input:focus{
             background-color: transparent;

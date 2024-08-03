@@ -137,3 +137,14 @@ main{
     }
 }
 img{width: 25px;}
+@media screen and (max-width: 850px) {
+    body{
+        text-align: center;
+    }
+    main .container{width: 90%;}
+    .container .instructions{
+        button{
+            width: 100%;
+        }
+    }
+}

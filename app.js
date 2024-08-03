@@ -15,10 +15,10 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         check.addEventListener('change', ()=>{
             if(!check.checked){
-                task.style.backgroundColor = ''
+                task.className = ''
                 return;
             }
-            task.style.backgroundColor = '#9fff0fb6'
+            task.className = 'complete'
         })
 
         //buttons
@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         //anchor btn
         anchor.addEventListener('click', ()=>{
-            task.style.backgroundColor = 'orange'
+            task.className = 'important'
         })
         deleteBtn.addEventListener('click', ()=>{
             task.remove()

@@ -24,6 +24,7 @@ document.addEventListener('DOMContentLoaded', ()=>{
         //buttons
         const anchor = document.createElement('button')
         const deleteBtn = document.createElement('button')
+        const deleteAll = document.querySelector('#deleteAll')
         //funcion para añadir los iconos
         function addIcon(i){
             const icon = document.createElement('img')
@@ -38,6 +39,9 @@ document.addEventListener('DOMContentLoaded', ()=>{
         anchor.addEventListener('click', ()=>{
             task.className = 'important'
         })
+        anchor.addEventListener('dblclick', ()=>{
+            task.className = ''
+        })
         deleteBtn.addEventListener('click', ()=>{
             task.remove()
         })
@@ -50,5 +54,16 @@ document.addEventListener('DOMContentLoaded', ()=>{
         task.append(deleteBtn)
 
         input.value = ''
+
+        //remove all
+        function removeAllTask(){
+            const allTask = document.querySelectorAll('li')
+            allTask.forEach(e=>{
+                e.remove()
+            })
+        }
+        deleteAll.addEventListener('click', ()=>{
+            removeAllTask()
+        })
     })
 })

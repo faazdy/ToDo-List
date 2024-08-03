@@ -24,6 +24,24 @@ main{
             margin: 2em 0;
             button{cursor: pointer;}
         }
+        .instructions{
+            button{
+                text-align: center;
+                border-radius: 10px;
+                color: white;
+                padding: 1em;
+            }
+            button:nth-child(1){
+                background-color: #2b2d42;
+            }
+            button:nth-child(2){
+                background-color: #ef233c;
+            }
+            span{
+                display: block;
+            }
+            p{font-size: 13px; margin: 10px 0; color: gray;}
+        }
         input{
             width: 70%;
             padding: 1em;
@@ -78,10 +96,16 @@ main{
             button:nth-child(3){
                 background-color: #2b2d42;
                 color: transparent;
+            }button:nth-child(3):hover{
+                background-color: #222435;
+                box-shadow: 0 0 5px 1px #222435;
             }
             button:nth-child(4){
                 background-color: #ef233c;
                 color: transparent;
+            }button:nth-child(4):hover{
+                background-color: #d90429;
+                box-shadow: 0 0 5px 1px #d90429;
             }
         }
         .complete{

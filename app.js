@@ -6,10 +6,22 @@ document.addEventListener('DOMContentLoaded', ()=>{
 
         const taskGroup = document.querySelector('#task-container')
         const task = document.createElement('li')
+
+        const textTask = document.createElement('p')
+
+        //checkbox 
         const check = document.createElement('input')
         check.type = 'checkbox' 
-        
-        
+
+        check.addEventListener('change', ()=>{
+            if(!check.checked){
+                task.style.backgroundColor = ''
+                return;
+            }
+            task.style.backgroundColor = '#9fff0fb6'
+        })
+
+        //buttons
         const anchor = document.createElement('button')
         const deleteBtn = document.createElement('button')
         //funcion para añadir los iconos
@@ -18,11 +30,21 @@ document.addEventListener('DOMContentLoaded', ()=>{
             icon.src = i;
             return icon;
         }
-        anchor.append(addIcon('ss'))
-        deleteBtn.append(addIcon('as'))
+        anchor.append(addIcon('assets/icons/anchor.svg'))
+        deleteBtn.append(addIcon('assets/icons/delete.svg'))
 
+
+        //anchor btn
+        anchor.addEventListener('click', ()=>{
+            task.style.backgroundColor = 'orange'
+        })
+        deleteBtn.addEventListener('click', ()=>{
+            task.remove()
+        })
+        //add the task
         taskGroup.appendChild(task)
-        task.innerText = input.value
+        task.appendChild(textTask)
+        textTask.innerText = input.value
         task.append(check)
         task.append(anchor)
         task.append(deleteBtn)

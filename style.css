@@ -1,0 +1,88 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body{
+    background-color: whitesmoke;
+}
+main{
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .container{
+        width: 50%;
+        background-color: white;
+        border-radius: 5px;
+        box-shadow: 0 0 15px 1px rgba(128, 128, 128, 0.137);
+        padding: 2em 1em;
+        form{
+            display: flex;
+            margin: 2em 0;
+        }
+        input{
+            width: 70%;
+            padding: 1em;
+            border: none;
+            background-color: transparent;
+            border: 1px solid;
+        }
+        input:focus{
+            background-color: transparent;
+            outline: none;
+        }
+        hr{
+            margin: 1em 0;
+        }
+        button{
+            width: 30%;
+            background-color: transparent;
+            border: none;
+            border: 1px solid;
+        }
+        ul{list-style: none;}
+        li{
+            width: 100%;
+            overflow: auto;
+            box-shadow: 0 0 4px 1px rgba(0, 0, 0, 0.171);
+            display: grid;
+            grid-template-columns: 3fr 1fr 1fr 1fr;
+            align-items: center;
+            gap: 5px;
+            padding: 1em .5em;
+            margin: 1em 0;
+            background-color: white;
+            p{width: 50%;}
+            input[type="checkbox"]{
+                width: 40px;
+                height: 40px;
+            }
+            button{
+                width: auto;
+                background-color: transparent;
+                border: none;
+                border: 1px solid;
+                cursor: pointer;
+                padding: 5px;
+                border-radius: 10px;
+            }
+            button:nth-child(3){
+                background-color: rgba(255, 255, 0, 0.747);
+                color: transparent;
+            }
+            button:nth-child(4){
+                background-color: rgb(255, 227, 227);
+                color: transparent;
+            }
+        }
+    }
+    #deleteAll{
+        width: 100%;
+        padding: 5px;
+        background-color: black;
+        color: white;
+        cursor: pointer;
+    }
+}
+img{width: 25px;}

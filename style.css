@@ -22,7 +22,7 @@ main{
         form{
             display: flex;
             margin: 2em 0;
-            button{cursor: pointer;}
+            button{cursor: pointer; border: none; border: 1px solid black;}
         }
         .instructions{
             button{

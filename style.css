@@ -136,6 +136,14 @@ main{
         background-color: #d90429;
     }
 }
+footer{
+    background-color: #222435;
+    padding: 1em;
+    bottom: 0;
+    color: white;
+    text-align: center;
+    a{color: #d90429;}
+}
 img{width: 25px;}
 @media screen and (max-width: 850px) {
     body{

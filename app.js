@@ -44,24 +44,18 @@ document.addEventListener("DOMContentLoaded", () => {
     form.addEventListener("submit", (e) => {
       e.preventDefault();
   
-      // Clonar el contenido del template
       const templateContent = template.content.cloneNode(true);
       const taskText = templateContent.querySelector(".task-text");
   
-      // Actualizar el texto del nuevo elemento
       taskText.innerText = input.value;
-  
-      // Añadir el nuevo elemento al contenedor de tareas
       taskContainer.appendChild(templateContent);
-  
-      // Limpiar el valor del input
       input.value = "";
   
-      // Guardar las tareas en Local Storage
+      
       saveTasks();
     });
   
-    // Delegación de eventos para manejar los checkboxes
+    //manejar checkbox
     taskContainer.addEventListener("change", (e) => {
       const target = e.target;
       
@@ -82,31 +76,28 @@ document.addEventListener("DOMContentLoaded", () => {
           taskItem.classList.remove("important");
         }
       }
-  
-      // Guardar las tareas en Local Storage
+      
+      
       saveTasks();
     });
   
-    // Delegación de eventos para manejar el botón de eliminar tareas
+    // Delete
     taskContainer.addEventListener("click", (e) => {
       const target = e.target;
   
       if (target.matches(".delete-task img")) {
         const taskItem = target.closest('li');
         taskItem.remove();
-        // Guardar las tareas en Local Storage
         saveTasks();
       }
     });
   
-    // Manejo del botón de eliminar todas las tareas
+    // Delete all
     document.querySelector("#deleteAll").addEventListener("click", () => {
       taskContainer.innerHTML = "";
-      // Guardar las tareas en Local Storage
       saveTasks();
     });
   
-    // Cargar tareas cuando la página se carga
     loadTasks();
   });
   

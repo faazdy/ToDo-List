@@ -1,103 +1,64 @@
-document.addEventListener("DOMContentLoaded", () => {
-    const form = document.querySelector("form");
-    const input = document.querySelector("#task-input");
-    const template = document.querySelector("template");
-    const taskContainer = document.querySelector("#task-container");
-  
-    // Cargar tareas desde Local Storage
-    function loadTasks() {
-      const tasks = JSON.parse(localStorage.getItem("tasks")) || [];
-      tasks.forEach(task => {
-        const templateContent = template.content.cloneNode(true);
-        const taskText = templateContent.querySelector(".task-text");
-        const completeCheck = templateContent.querySelector("input[name='complete']");
-        const anchorCheck = templateContent.querySelector("input[name='anchor']");
-        
-        taskText.innerText = task.text;
-        completeCheck.checked = task.complete;
-        anchorCheck.checked = task.important;
-        
-        if (completeCheck.checked) {
-          templateContent.querySelector('li').classList.add("complete");
-        }
-        
-        if (anchorCheck.checked) {
-          templateContent.querySelector('li').classList.add("important");
-        }
-        
-        taskContainer.appendChild(templateContent);
-      });
+const form = document.querySelector('form')
+const taskContainer = document.querySelector('#task-container')
+form.addEventListener('submit', (e)=>{
+  e.preventDefault();
+  //tarea
+  const taskInput = document.querySelector('#task-input')
+  const newTask = document.createElement('li')
+  newTask.innerHTML = `<p class="task-text">${taskInput.value}</p>
+                    <input type="checkbox" name="complete" class="complete-task">
+                    <button class="anchor">
+                        <label for="anchor">
+                            <img src="assets/icons/anchor.svg" alt="anchor">
+                        </label>
+                        <input type="checkbox" name="anchor" class="anchor-task" style="display: none;">
+                    </button>
+                    <button class="delete-task">
+                        <img src="assets/icons/delete.svg" alt="">
+                    </button>`;
+  taskContainer.appendChild(newTask)
+  taskInput.value = ''
+  //botones
+  //poner newTask.query para que se seleccione los correspondientes a la tarea creada y no los primeros del documento
+  const complete = newTask.querySelector('.complete-task')
+  const important = newTask.querySelector('.anchor-task')
+  const deleteTask = newTask.querySelector('.delete-task')
+
+  //complete
+  complete.addEventListener('change', ()=>{
+    if(complete.checked){
+      newTask.classList.add('complete')
+    } else {
+      newTask.classList.remove('complete')
     }
-  
-    // Guardar tareas en Local Storage
-    function saveTasks() {
-      const tasks = [];
-      taskContainer.querySelectorAll('li').forEach(taskItem => {
-        const taskText = taskItem.querySelector(".task-text").innerText;
-        const completeCheck = taskItem.querySelector("input[name='complete']").checked;
-        const anchorCheck = taskItem.querySelector("input[name='anchor']").checked;
-        tasks.push({ text: taskText, complete: completeCheck, important: anchorCheck });
-      });
-      localStorage.setItem("tasks", JSON.stringify(tasks));
+  })
+
+  //important
+  const anchorButton = newTask.querySelector('.anchor');
+  anchorButton.addEventListener('click', () => {
+    important.checked = !important.checked; // Alternar el estado del checkbox
+    if (important.checked) {
+      newTask.classList.add('important');
+    } else {
+      newTask.classList.remove('important');
     }
-  
-    form.addEventListener("submit", (e) => {
-      e.preventDefault();
-  
-      const templateContent = template.content.cloneNode(true);
-      const taskText = templateContent.querySelector(".task-text");
-  
-      taskText.innerText = input.value;
-      taskContainer.appendChild(templateContent);
-      input.value = "";
-  
-      
-      saveTasks();
-    });
-  
-    //manejar checkbox
-    taskContainer.addEventListener("change", (e) => {
-      const target = e.target;
-      
-      if (target.matches("input[name='complete']")) {
-        const taskItem = target.closest('li');
-        if (target.checked) {
-          taskItem.classList.add("complete");
-        } else {
-          taskItem.classList.remove("complete");
-        }
-      }
-  
-      if (target.matches("input[name='anchor']")) {
-        const taskItem = target.closest('li');
-        if (target.checked) {
-          taskItem.classList.add("important");
-        } else {
-          taskItem.classList.remove("important");
-        }
-      }
-      
-      
-      saveTasks();
-    });
-  
-    // Delete
-    taskContainer.addEventListener("click", (e) => {
-      const target = e.target;
-  
-      if (target.matches(".delete-task img")) {
-        const taskItem = target.closest('li');
-        taskItem.remove();
-        saveTasks();
-      }
-    });
-  
-    // Delete all
-    document.querySelector("#deleteAll").addEventListener("click", () => {
-      taskContainer.innerHTML = "";
-      saveTasks();
-    });
-  
-    loadTasks();
   });
-  
+  important.addEventListener('change', ()=>{
+    if(important.checked){
+      newTask.classList.add('important')
+    } else {
+      newTask.classList.remove('important')
+    }
+  })
+
+  //delete
+  deleteTask.addEventListener('click', ()=>{
+    newTask.remove();
+  })
+
+  //deleteAll
+  const deleteAll = document.querySelector('#deleteAll')
+  deleteAll.addEventListener('click', ()=>{
+    taskContainer.innerHTML = ''
+  })
+})
